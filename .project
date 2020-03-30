@@ -10,14 +10,46 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 		<nature>phasereditor.project.core.nature</nature>
 	</natures>
+	<filteredResources>
+		<filter>
+			<id>1585456930275</id>
+			<name></name>
+			<type>26</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.patternFilterMatcher</id>
+				<arguments>node_modules</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1585456930281</id>
+			<name></name>
+			<type>26</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.patternFilterMatcher</id>
+				<arguments>.git</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1585456930286</id>
+			<name></name>
+			<type>26</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.patternFilterMatcher</id>
+				<arguments>__MACOSX</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1585456930293</id>
+			<name></name>
+			<type>22</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.patternFilterMatcher</id>
+				<arguments>.DS_Store</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>

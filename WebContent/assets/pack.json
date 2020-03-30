@@ -1,7 +1,47 @@
-{"meta": {
-  "generated": "1490300737380",
-  "app": "Phaser Editor",
-  "url": "http://phasereditor.boniatillo.com",
-  "version": "1.0",
-  "copyright": "Arian Fornaris (c) 2015,2016"
-}}
+{
+  "section1": {"files": [
+    {
+      "type": "animation",
+      "key": "animations",
+      "url": "assets/animations.json"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Scene1",
+      "url": "assets/scenes/Scene1.js"
+    },
+    {
+      "type": "multiatlas",
+      "key": "textures",
+      "url": "assets/atlas/textures.json",
+      "path": "assets/atlas"
+    },
+    {
+      "type": "image",
+      "key": "blueMan",
+      "url": "assets/blueMan.png"
+    },
+    {
+      "type": "image",
+      "key": "blueMan1",
+      "url": "assets/blueMan.png"
+    },
+    {
+      "type": "image",
+      "key": "background1",
+      "url": "assets/scenes/background1.png"
+    },
+    {
+      "type": "image",
+      "key": "platform",
+      "url": "assets/scenes/platform.png"
+    }
+  ]},
+  "meta": {
+    "generated": "1585464332321",
+    "app": "Phaser Editor 2D - Asset Pack Editor - 2.1.6",
+    "contentType": "Phaser v3 Asset Pack",
+    "url": "https://phasereditor2d.com",
+    "version": "2"
+  }
+}
