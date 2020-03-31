@@ -1,11 +1,6 @@
 {
   "section1": {"files": [
     {
-      "type": "animation",
-      "key": "animations",
-      "url": "assets/animations.json"
-    },
-    {
       "type": "sceneFile",
       "key": "Scene1",
       "url": "assets/scenes/Scene1.js"
@@ -19,26 +14,64 @@
     {
       "type": "image",
       "key": "blueMan",
-      "url": "assets/blueMan.png"
+      "url": "assets/blueMan.png",
+      "normalMap": ""
     },
     {
       "type": "image",
       "key": "blueMan1",
-      "url": "assets/blueMan.png"
+      "url": "assets/blueMan.png",
+      "normalMap": ""
     },
     {
       "type": "image",
       "key": "background1",
-      "url": "assets/scenes/background1.png"
+      "url": "assets/scenes/background1.png",
+      "normalMap": ""
     },
     {
       "type": "image",
       "key": "platform",
-      "url": "assets/scenes/platform.png"
+      "url": "assets/scenes/platform.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "bullet",
+      "url": "assets/bullet.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftBackLeg-removebg-preview",
+      "url": "assets/WalkLeftBackLeg-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftFrontLeg-removebg-preview",
+      "url": "assets/WalkLeftFrontLeg-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftStand-removebg-preview",
+      "url": "assets/WalkLeftStand-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "animation",
+      "key": "Left",
+      "url": "assets/animations.json"
+    },
+    {
+      "type": "animation",
+      "key": "Left1",
+      "url": "assets/Left.json"
     }
   ]},
   "meta": {
-    "generated": "1585464332321",
+    "generated": "1585552790977",
     "app": "Phaser Editor 2D - Asset Pack Editor - 2.1.6",
     "contentType": "Phaser v3 Asset Pack",
     "url": "https://phasereditor2d.com",
