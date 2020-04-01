@@ -68,13 +68,10 @@
       "type": "animation",
       "key": "Left1",
       "url": "assets/Left.json"
-    }
-  ]},
-  "meta": {
-    "generated": "1585552790977",
-      "key": "lightning_bolt",
+    },{
+          "key": "lightning_bolt",
       "url": "assets/lightning_bolt.png"
-    }
+      }
   ]},
   "meta": {
     "generated": "1585542438446",
