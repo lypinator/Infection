@@ -96,12 +96,14 @@
         "children": [],
         "variableName": "player",
         "variableField": true,
+        "data": {"hasGun": "false"},
         "x": 491.79150390625,
         "y": 1036.43798828125,
         "scaleX": 0.4816347658634186,
         "scaleY": 0.35892242193222046,
-        "textureKey": "blueMan",
-        "textureFrame": "blueMan"
+        "textureKey": "WalkLeftStand-removebg-preview",
+        "textureFrame": "WalkLeftStand-removebg-preview",
+        "autoPlayAnimKey": "LeftWalkLeftStand-removebg-preview"
       },
       {
         "-id": "a7353f6c-ae64-4734-87cc-bf616282178d",

@@ -1,11 +1,6 @@
 {
   "section1": {"files": [
     {
-      "type": "animation",
-      "key": "animations",
-      "url": "assets/animations.json"
-    },
-    {
       "type": "sceneFile",
       "key": "Scene1",
       "url": "assets/scenes/Scene1.js"
@@ -42,6 +37,41 @@
     },
     {
       "type": "image",
+      "key": "bullet",
+      "url": "assets/bullet.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftBackLeg-removebg-preview",
+      "url": "assets/WalkLeftBackLeg-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftFrontLeg-removebg-preview",
+      "url": "assets/WalkLeftFrontLeg-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftStand-removebg-preview",
+      "url": "assets/WalkLeftStand-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "animation",
+      "key": "Left",
+      "url": "assets/animations.json"
+    },
+    {
+      "type": "animation",
+      "key": "Left1",
+      "url": "assets/Left.json"
+    }
+  ]},
+  "meta": {
+    "generated": "1585552790977",
       "key": "lightning_bolt",
       "url": "assets/lightning_bolt.png"
     }

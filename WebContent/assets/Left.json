@@ -1,0 +1,25 @@
+{
+  "anims": [{
+    "key": "LeftWalkLeftStand-removebg-preview",
+    "frameRate": 8,
+    "frames": [
+      {"key": "WalkLeftStand-removebg-preview"},
+      {
+        "key": "WalkLeftBackLeg-removebg-preview",
+        "frame": "WalkLeftBackLeg-removebg-preview"
+      },
+      {
+        "key": "WalkLeftStand-removebg-preview",
+        "frame": "WalkLeftStand-removebg-preview"
+      },
+      {
+        "key": "WalkLeftFrontLeg-removebg-preview",
+        "frame": "WalkLeftFrontLeg-removebg-preview"
+      }
+    ]
+  }],
+  "meta": {
+    "app": "Phaser Editor v2",
+    "contentType": "Phaser v3 Animations"
+  }
+}
