@@ -12,8 +12,8 @@
         "children": [],
         "variableName": "background1",
         "variableField": false,
-        "x": 1050,
-        "y": 1050,
+        "x": 998.8054809570312,
+        "y": 1069.4197998046875,
         "textureKey": "background1",
         "textureFrame": "background1"
       },
@@ -164,10 +164,10 @@
       "variableField": true
     }]
   },
-  "snapEnabled": true,
-  "snapWidth": 150,
-  "snapHeight": 150,
-  "borderHeight": 450,
+  "snapWidth": 2000,
+  "snapHeight": 2000,
+  "borderWidth": 10,
+  "borderHeight": 10,
   "createMethodName": "_create",
   "methodContextType": "SCENE",
   "sceneKey": "Scene1"
