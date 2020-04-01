@@ -72,6 +72,12 @@
   ]},
   "meta": {
     "generated": "1585552790977",
+      "key": "lightning_bolt",
+      "url": "assets/lightning_bolt.png"
+    }
+  ]},
+  "meta": {
+    "generated": "1585542438446",
     "app": "Phaser Editor 2D - Asset Pack Editor - 2.1.6",
     "contentType": "Phaser v3 Asset Pack",
     "url": "https://phasereditor2d.com",

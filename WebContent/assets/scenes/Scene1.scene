@@ -12,8 +12,8 @@
         "children": [],
         "variableName": "background1",
         "variableField": false,
-        "x": 992,
-        "y": 1010.1321411132812,
+        "x": 1050,
+        "y": 1050,
         "textureKey": "background1",
         "textureFrame": "background1"
       },
@@ -78,6 +78,19 @@
         "textureFrame": "platform"
       },
       {
+        "-id": "d627eb81-3966-4a57-9a49-186310889563",
+        "-type": "Image",
+        "children": [],
+        "variableName": "lightningBolt",
+        "variableField": true,
+        "x": 750,
+        "y": 1200,
+        "scaleX": 0.30000001192092896,
+        "scaleY": 0.30000001192092896,
+        "textureKey": "lightning_bolt",
+        "textureFrame": "lightning_bolt"
+      },
+      {
         "-id": "364a6d22-9f6b-4979-a973-d8cfd08f6df8",
         "-type": "Sprite",
         "children": [],
@@ -117,6 +130,20 @@
         "scaleY": 0.3166772425174713,
         "textureKey": "blueMan1",
         "textureFrame": "blueMan1"
+      },
+      {
+        "-id": "996bc8e4-9f18-4cda-aee2-45f41bde0f50",
+        "-type": "Text",
+        "children": [],
+        "variableName": "gameInfo",
+        "variableField": true,
+        "visible": false,
+        "x": 498.5,
+        "y": 313,
+        "text": "New text",
+        "fontSize": "25px",
+        "color": "#FFFFFF",
+        "stroke": "#FF8080"
       }
     ]
   },
@@ -137,6 +164,9 @@
       "variableField": true
     }]
   },
+  "snapEnabled": true,
+  "snapWidth": 150,
+  "snapHeight": 150,
   "borderHeight": 450,
   "createMethodName": "_create",
   "methodContextType": "SCENE",
