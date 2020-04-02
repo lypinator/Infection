@@ -3,54 +3,6 @@ var directionY;
 
 
 // You can write more code here
-
-class Bullet extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
-        super(scene, x, y, 'bullet');
-    }
-
-    fire(x, y) {
-        this.body.reset(x, y);
-
-        this.setActive(true);
-        this.setVisible(true);
-
-        this.setVelocityY(directionY);
-
-        this.setVelocityX(directionX)
-    }
-
-    preUpdate(time, delta) {
-        super.preUpdate(time, delta);
-
-        if (this.y <= -32 || this.x <= -32 || this.y >= 2032 || this.x >= 2032) {
-            this.setActive(false);
-            this.setVisible(false);
-        }
-    }
-}
-
-class Bullets extends Phaser.Physics.Arcade.Group {
-    constructor(scene) {
-        super(scene.physics.world, scene);
-
-        this.createMultiple({
-            frameQuantity: 30,
-            key: 'bullet',
-            active: false,
-            visible: false,
-            classType: Bullet
-        });
-    }
-
-    fireBullet(x, y, hasGun) {
-        let bullet = this.getFirstDead(false);
-
-        if (bullet && hasGun) {
-            bullet.fire(x, y);
-        }
-    }
-}
 function collisionHandler() {
     console.log("hit");
     this.fToken.destroy();
@@ -60,24 +12,18 @@ function hideText(text) {
     text.visible = false;
 }
 function itemCollisionHandler() {
-
-
     console.log("Collided");
     this.fGameInfo.text = "Hold E to Pickup Item";
     this.fGameInfo.visible = true;
 
     this.time.removeAllEvents();
     this.time.delayedCall(100, hideText, [this.fGameInfo], this);
-
 }
 /* START OF COMPILED CODE */
 
 class Scene1 extends Phaser.Scene {
-
     constructor() {
-
         super("Scene1");
-
     }
 
     _create() {
@@ -122,77 +68,31 @@ class Scene1 extends Phaser.Scene {
         this.fPlayer = player;
         this.fToken = token;
         this.fGameInfo = gameInfo;
-
     }
-
-
-
-
-
 
     /* START-USER-CODE */
 
     create() {
-
-        this._create();
-        this.bullet;
-        this.bullets = new Bullets(this);
-
-        this.physics.add.existing(this.fPlayer);
-        this.fPlayer.body.setSize(this.fPlayer.width, this.fPlayer.height);
-        this.fPlayer.body.setCollideWorldBounds(true);
-
-        this.fPlayer.body.setDrag(2000);
-        this.fPlayer.anims.duration = 1000;
-
-        this.physics.add.existing(this.fToken);
-
-        this.fPlayer.body.setSize(this.fPlayer.width, this.fPlayer.height);
-
-        this.physics.add.existing(this.fLightningBolt);
-        this.fLightningBolt.body.setSize(this.fLightningBolt.width, this.fLightningBolt.height);
-        this.fLightningBolt.body.immovable = true;
-
-        for (var image of this.fWalls.children.entries) {
-            this.physics.add.existing(image);
-            image.body.setSize(image.width, image.height);
-            image.body.setDrag(2000);
-            image.body.immovable = true;
-        }
-
-        this.cameras.main.setSize(2000, 2000);
-        this.cameras.main.setZoom(5);
-        this.cameras.main.startFollow(this.fPlayer, false, 0.5, 0.5);
-
-
-        this.key_UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        this.key_LEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-        this.key_RIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-        this.key_DOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-        this.key_SPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACEBAR);
-        this.key_PICKUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-        this.key_LOCK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
-
-        this.input.keyboard.on('keydown_SPACE', function (event) {
-            this.bullets.fireBullet(this.fPlayer.x, this.fPlayer.y, this.fPlayer.getData('hasGun'));
-        }, this);
-
         //this.physics.add.collider(this.fPlayer, this.fWalls);
         this.pickUpDuration = 0;
-
         this.moveObject = false;
         this.activeWall = null;
         this.playerWallOffsetX;
-        this.playerWallOffsetY; 
+        this.playerWallOffsetY;
+
+        this._create();
+        this.configurePlayer();
+        this.configureItems();
+        this.configureWalls();
+        this.configureCameras();
+        this.configureKeys();
+        this.configureKeyPressEvents();
     }
 
     update() {
-        this.physics.overlap(this.fPlayer, this.fLightningBolt, itemCollisionHandler, null, this);
-        this.physics.world.addCollider(this.fPlayer, this.fToken, collisionHandler, null, this);
 
+        this.configureCollisionHandler(); 
 
-        this.physics.world.addCollider(this.fPlayer, this.fToken, collisionHandler, null, this);
-        this.physics.world.addCollider(this.fPlayer, this.fWalls, this.wallCollisionHandler, null, this);
 
         if (this.key_UP.isDown) {
             this.fPlayer.body.velocity.y = -200;
@@ -228,15 +128,15 @@ class Scene1 extends Phaser.Scene {
         }
 
         if (this.key_LOCK.isDown && this.moveObject) {
-        	
-        	this.activeWall.x = this.playerWallOffsetX + this.fPlayer.x; 
-        	this.activeWall.y = this.playerWallOffsetY + this.fPlayer.y; 	
+
+            this.activeWall.x = this.playerWallOffsetX + this.fPlayer.x;
+            this.activeWall.y = this.playerWallOffsetY + this.fPlayer.y;
 
         } else {
-        	if(this.activeWall != null){
-        		this.activeWall.body.immovable = true;
-        		this.moveObject = false;
-        	}
+            if (this.activeWall != null) {
+                this.activeWall.body.immovable = true;
+                this.moveObject = false;
+            }
         }
 
         //Game information
@@ -248,12 +148,13 @@ class Scene1 extends Phaser.Scene {
         }
     }
 
+    //Heler Functions
     wallCollisionHandler(player, wall) {
         if (this.key_LOCK.getDuration() > 1000 && !this.moveObject) {
             wall.body.immovable = false;
             wall.setTint(0xECECEC);
             this.moveObject = true;
-            this.activeWall = wall; 
+            this.activeWall = wall;
             this.playerWallOffsetX = wall.x - player.x;
             this.playerWallOffsetY = wall.y - player.y;
         }
@@ -263,12 +164,58 @@ class Scene1 extends Phaser.Scene {
 
         return Phaser.Geom.Intersects.RectangleToRectangle(Phaser.Geom.Rectangle.Scale(spriteA, 1.5, 1.5).getBounds(), Phaser.Geom.Rectangle.Scale(spriteB, 1.5, 1.5).getBounds());
     }
+
+    configureKeyPressEvents(){
+    this.input.keyboard.on('keydown_SPACE', function (event) {
+        this.bullets.fireBullet(this.fPlayer.x, this.fPlayer.y, this.fPlayer.getData('hasGun'));
+    }, this);
 }
 
+configureCollisionHandler(){
+    this.physics.overlap(this.fPlayer, this.fLightningBolt, itemCollisionHandler, null, this);
+    this.physics.world.addCollider(this.fPlayer, this.fToken, collisionHandler, null, this);
+    this.physics.world.addCollider(this.fPlayer, this.fWalls, this.wallCollisionHandler, null, this);
+}
 
+    configurePlayer() {
+        this.physics.add.existing(this.fPlayer);
+        this.fPlayer.body.setSize(this.fPlayer.width, this.fPlayer.height);
+        this.fPlayer.body.setCollideWorldBounds(true);
+        this.fPlayer.body.setDrag(2000);
+        this.fPlayer.anims.duration = 1000;
+        this.fPlayer.body.setSize(this.fPlayer.width, this.fPlayer.height);
+    }
+    configureWalls() {
+        for (var image of this.fWalls.children.entries) {
+            this.physics.add.existing(image);
+            image.body.setSize(image.width, image.height);
+            image.body.setDrag(2000);
+            image.body.immovable = true;
+        }
+    }
+    configureCameras() {
+        this.cameras.main.setSize(2000, 2000);
+        this.cameras.main.setZoom(5);
+        this.cameras.main.startFollow(this.fPlayer, false, 0.5, 0.5);
+    }
 
-
-
+    configureItems() {
+        this.bullets = new Bullets(this);
+        this.physics.add.existing(this.fToken);
+        this.physics.add.existing(this.fLightningBolt);
+        this.fLightningBolt.body.setSize(this.fLightningBolt.width, this.fLightningBolt.height);
+        this.fLightningBolt.body.immovable = true;
+    }
+    configureKeys() {
+        this.key_UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.key_LEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.key_RIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.key_DOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.key_SPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACEBAR);
+        this.key_PICKUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+        this.key_LOCK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+    }
+}
 
 /* END-USER-CODE */
 
