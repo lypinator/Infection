@@ -1,7 +1,84 @@
-{"meta": {
-  "generated": "1490300737380",
-  "app": "Phaser Editor",
-  "url": "http://phasereditor.boniatillo.com",
-  "version": "1.0",
-  "copyright": "Arian Fornaris (c) 2015,2016"
-}}
+{
+  "section1": {"files": [
+    {
+      "type": "sceneFile",
+      "key": "Scene1",
+      "url": "assets/scenes/Scene1.js"
+    },
+    {
+      "type": "multiatlas",
+      "key": "textures",
+      "url": "assets/atlas/textures.json",
+      "path": "assets/atlas"
+    },
+    {
+      "type": "image",
+      "key": "blueMan",
+      "url": "assets/blueMan.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "blueMan1",
+      "url": "assets/blueMan.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "background1",
+      "url": "assets/scenes/background1.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "platform",
+      "url": "assets/scenes/platform.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "bullet",
+      "url": "assets/bullet.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftBackLeg-removebg-preview",
+      "url": "assets/WalkLeftBackLeg-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftFrontLeg-removebg-preview",
+      "url": "assets/WalkLeftFrontLeg-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "WalkLeftStand-removebg-preview",
+      "url": "assets/WalkLeftStand-removebg-preview.png",
+      "normalMap": ""
+    },
+    {
+      "type": "animation",
+      "key": "Left",
+      "url": "assets/animations.json"
+    },
+    {
+      "type": "animation",
+      "key": "Left1",
+      "url": "assets/Left.json"
+    },{
+    "type": "image",
+          "key": "lightning_bolt",
+      "url": "assets/lightning_bolt.png"
+      }
+  ]},
+  "meta": {
+    "generated": "1585542438446",
+    "app": "Phaser Editor 2D - Asset Pack Editor - 2.1.6",
+    "contentType": "Phaser v3 Asset Pack",
+    "url": "https://phasereditor2d.com",
+    "version": "2"
+  }
+}
