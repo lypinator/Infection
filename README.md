@@ -2,12 +2,10 @@ Running the Project Locally:
 
 Setup.sh: 
 
--Install npm to the backend directory
-
--Install websockets
-
--Start the server
+1) Install npm to the backend directory
+2) Install websockets
+3) Start the server
 
 RunServer: 
 
--Runs the server from the backend directory
+1) Runs the server from the backend directory
