@@ -3,11 +3,6 @@ var directionY;
 
 
 // You can write more code here
-function collisionHandler() {
-    console.log("hit");
-    this.fToken.destroy();
-    this.fPlayer.setData('hasGun', true);
-}
 function hideText(text) {
     text.visible = false;
 }
@@ -22,64 +17,78 @@ function itemCollisionHandler() {
 /* START OF COMPILED CODE */
 
 class Scene1 extends Phaser.Scene {
-    constructor() {
-        super("Scene1");
-    }
-
-    _create() {
-
-        this.add.image(998.8055, 1069.4198, "background1");
-        var platform = this.add.image(224.0, 912.0, "platform");
-
-        var platform_1 = this.add.image(222.07042, 1131.7639, "platform");
-
-        var platform_3 = this.add.image(288.6319, 998.15063, "platform");
-        platform_3.setScale(0.12639447, 4.9188023);
-
-        var platform_2 = this.add.image(45.849155, 1022.5466, "platform");
-        platform_2.setScale(0.10933112, 7.793609);
-
-        var platform_4 = this.add.image(923.90283, 924.77264, "platform");
-
-        var lightningBolt = this.add.image(750.0, 1200.0, "lightning_bolt");
-        lightningBolt.setScale(0.3, 0.3);
-
-        var player = this.add.sprite(491.7915, 1036.438, "WalkLeftStand-removebg-preview");
-        player.setData("hasGun", false);
-        player.setScale(0.48163477, 0.35892242);
-        player.anims.play("LeftWalkLeftStand-removebg-preview");
-
-        var platform_5 = this.add.image(1097.0784, 1099.6459, "platform");
-        platform_5.setScale(0.11905486, 12.137681);
-
-        var token = this.add.sprite(695.0789, 636.8644, "blueMan1");
-        token.setScale(0.34577677, 0.31667724);
-
-        var gameInfo = this.add.text(498.5, 313.0, "New text", {
-            "fontSize": "25px",
-            "color": "#FFFFFF",
-            "stroke": "#FF8080"
-        });
-        gameInfo.visible = false;
-
-        this.fWalls = this.add.group([platform, platform_3, platform_1, platform_2, platform_4, platform_5]);
-
-        this.fLightningBolt = lightningBolt;
-        this.fPlayer = player;
-        this.fToken = token;
-        this.fGameInfo = gameInfo;
-    }
-
-    /* START-USER-CODE */
+	
+	constructor() {
+	
+		super("Scene1");
+		
+	}
+	
+	_create() {
+	
+		this.add.image(1000.0, 1000.0, "background1");
+		
+		var water = this.add.image(1610.7423, 1817.4121, "water");
+		water.setScale(2.5825047, 1.2230265);
+		
+		var platform = this.add.image(224.0, 912.0, "platform");
+		platform.setData("Health", 100);
+		
+		var platform_1 = this.add.image(222.07042, 1131.7639, "platform");
+		platform_1.setData("Health", 100);
+		
+		var platform_3 = this.add.image(296.66806, 998.15063, "platform");
+		platform_3.setData("body.immovable", true);
+		platform_3.setData("Health", 100);
+		platform_3.setScale(0.12639447, 4.9188023);
+		
+		var platform_2 = this.add.image(45.849155, 1022.5466, "platform");
+		platform_2.setData("Health", 100);
+		platform_2.setScale(0.10933112, 7.793609);
+		
+		var platform_4 = this.add.image(923.90283, 924.77264, "platform");
+		platform_4.setData("Health", 100);
+		
+		var platform_5 = this.add.image(1097.0784, 1099.6459, "platform");
+		platform_5.setData("Health", 100);
+		platform_5.setScale(0.11905486, 12.137681);
+		
+		var gunPickup = this.add.image(617.5271, 1040.9796, "gunPickup");
+		
+		var gameInfo = this.add.text(498.5, 313.0, "New text", {
+    "fontSize": "25px",
+    "color": "#FFFFFF",
+    "stroke": "#FF8080"
+});
+		gameInfo.visible = false;
+		
+		var player = this.add.sprite(491.7915, 1036.438, "WalkLeftStand-removebg-preview");
+		player.setData("hasGun", false);
+		player.setScale(0.48163477, 0.35892242);
+		player.anims.play("LeftWalkLeftStand-removebg-preview");
+		
+		this.fWalls = this.add.group([ platform, platform_3, platform_1, platform_2, platform_4, platform_5 ]);
+		this.fWater = this.add.group([ water ]);
+		
+		this.fGunPickup = gunPickup;
+		this.fGameInfo = gameInfo;
+		this.fPlayer = player;
+		
+	}
+	
+	
+	
+	
+	
+	
+	/* START-USER-CODE */
 
     create() {
-        //this.physics.add.collider(this.fPlayer, this.fWalls);
         this.pickUpDuration = 0;
         this.moveObject = false;
         this.activeWall = null;
         this.playerWallOffsetX;
         this.playerWallOffsetY;
-
         this._create();
         this.configurePlayer();
         this.configureItems();
@@ -102,7 +111,6 @@ class Scene1 extends Phaser.Scene {
         }
         if (this.key_LEFT.isDown) {
             this.fPlayer.body.velocity.x = -200;
-            console.log();
             this.fPlayer.anims.play("LeftWalkLeftStand-removebg-preview", true);
             directionX = -300;
             directionY = 0;
@@ -143,8 +151,9 @@ class Scene1 extends Phaser.Scene {
         this.fGameInfo.x = this.fPlayer.x - 100;
         this.fGameInfo.y = this.fPlayer.y + 100;
 
-        if (this.key_PICKUP.getDuration() > 1000 && this.isOverlapping(this.fPlayer, this.fLightningBolt)) {
-            this.fLightningBolt.destroy();
+        if (this.key_PICKUP.getDuration() > 1000 && this.isOverlapping(this.fPlayer, this.fGunPickup)) {
+            this.fGunPickup.destroy();
+			this.fPlayer.setData('hasGun', true);
         }
     }
 
@@ -172,9 +181,9 @@ class Scene1 extends Phaser.Scene {
 }
 
 configureCollisionHandler(){
-    this.physics.overlap(this.fPlayer, this.fLightningBolt, itemCollisionHandler, null, this);
-    this.physics.world.addCollider(this.fPlayer, this.fToken, collisionHandler, null, this);
+    this.physics.overlap(this.fPlayer, this.fGunPickup, itemCollisionHandler, null, this);
     this.physics.world.addCollider(this.fPlayer, this.fWalls, this.wallCollisionHandler, null, this);
+	this.physics.world.addCollider(this.bullets, this.fWalls, this.wallShotHandler, null, this);
 }
 
     configurePlayer() {
@@ -201,11 +210,27 @@ configureCollisionHandler(){
 
     configureItems() {
         this.bullets = new Bullets(this);
-        this.physics.add.existing(this.fToken);
-        this.physics.add.existing(this.fLightningBolt);
-        this.fLightningBolt.body.setSize(this.fLightningBolt.width, this.fLightningBolt.height);
-        this.fLightningBolt.body.immovable = true;
+        this.physics.add.existing(this.fGunPickup);
+        this.fGunPickup.body.setSize(this.fGunPickup.width, this.fGunPickup.height);
+        this.fGunPickup.body.immovable = true;
     }
+	gunAdd(){
+		this.fGameInfo.text = "Hold E to Pickup Gun";
+    	this.fGameInfo.visible = true;
+    	this.time.removeAllEvents();
+    	this.time.delayedCall(100, hideText, [this.fGameInfo], this);
+	}
+	wallShotHandler(wall,bullet){
+		bullet.setActive(false);
+        bullet.setVisible(false);
+		var health = wall.getData('Health');
+		if (health - 10 <= 0){
+			wall.destroy();
+		}
+		else{
+		wall.setData('Health',health-10);
+		}
+	}
     configureKeys() {
         this.key_UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.key_LEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -215,10 +240,9 @@ configureCollisionHandler(){
         this.key_PICKUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.key_LOCK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     }
-}
 
 /* END-USER-CODE */
-
+}
 
 /* END OF COMPILED CODE */
 
