@@ -81,6 +81,7 @@ class Scene1 extends Phaser.Scene {
         this.playerWallOffsetY;
 
         this._create();
+        connectToServer(this); 
         this.configurePlayer();
         this.configureItems();
         this.configureWalls();
@@ -93,12 +94,11 @@ class Scene1 extends Phaser.Scene {
 
         this.configureCollisionHandler(); 
 
-
         if (this.key_UP.isDown) {
             this.fPlayer.body.velocity.y = -200;
             directionY = -300;
             directionX = 0;
-            //console.log("up");
+            this.sendServerUpdate(); 
         }
         if (this.key_LEFT.isDown) {
             this.fPlayer.body.velocity.x = -200;
@@ -106,20 +106,20 @@ class Scene1 extends Phaser.Scene {
             this.fPlayer.anims.play("LeftWalkLeftStand-removebg-preview", true);
             directionX = -300;
             directionY = 0;
-            //console.log("left");
-
+            this.sendServerUpdate(); 
         }
         if (this.key_DOWN.isDown) {
             this.fPlayer.body.velocity.y = 200;
             directionY = 300;
             directionX = 0;
-            //console.log("down");
+            this.sendServerUpdate(); 
+
         }
         if (this.key_RIGHT.isDown) {
-            //console.log("right");
             this.fPlayer.body.velocity.x = 200;
             directionX = 300;
             directionY = 0;
+            this.sendServerUpdate(); 
         }
 
         if (this.key_RIGHT.isUp && this.key_DOWN.isUp && this.key_LEFT.isUp && this.key_UP.isUp) {
@@ -158,6 +158,10 @@ class Scene1 extends Phaser.Scene {
             this.playerWallOffsetX = wall.x - player.x;
             this.playerWallOffsetY = wall.y - player.y;
         }
+    }
+    sendServerUpdate(){
+        var updateMessage = { type: "MOVEMENT", playerId: playerId, xPos: this.fPlayer.x, yPos: this.fPlayer.y };
+        serverConnection.send(JSON.stringify(updateMessage));
     }
 
     isOverlapping(spriteA, spriteB) {
