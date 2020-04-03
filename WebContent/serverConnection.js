@@ -26,6 +26,7 @@ function connectToServer(canvas) {
                     newPlayer1.setScale(0.48163477, 0.35892242);
                     newPlayer1.anims.play("LeftWalkLeftStand-removebg-preview");
                     allPlayers.set(player.playerId, newPlayer1);
+                    canvas.initializeWalls(); 
                 }
                 break;
             case 'PLAYER_MOVEMENT_UPDATE':
@@ -33,7 +34,10 @@ function connectToServer(canvas) {
                 allPlayers.get(json.playerId).x = json.xPos;
                 allPlayers.get(json.playerId).y = json.yPos;
                 break;
-
+            case 'WALL_MOVEMENT_UPDATE':
+                canvas.fWalls.children.entries[json.wallId].x = json.xPos;
+                canvas.fWalls.children.entries[json.wallId].y = json.yPos;
+                break;
         }
     }
 }

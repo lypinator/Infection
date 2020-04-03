@@ -22,6 +22,7 @@ var wsServer = new webSocketServer({
 
 var allPlayers = [];
 var connections = [];
+var allWalls = new Map();
 wsServer.on('request', function (request) {
 
   var currentPlayersConnection = request.accept(null, request.origin);
@@ -71,6 +72,23 @@ wsServer.on('request', function (request) {
               yPos: incomingMessage.yPos
             }));
           }
+        }
+      }
+
+      if (incomingMessage.type === "WALLMOVEMENT") {
+        if(allWalls.has(incomingMessage.wallId)){
+          for(var con of connections){
+            if(con.playerId !== incomingMessage.playerId){
+              con.connection.sendUTF(JSON.stringify({
+                type: 'WALL_MOVEMENT_UPDATE',
+                wallId: incomingMessage.wallId,
+                xPos: incomingMessage.xPos,
+                yPos: incomingMessage.yPos
+              }));
+            }
+          }
+        }else{
+          allWalls.set(incomingMessage.wallId, {xPos:incomingMessage.xPos, yPos:incomingMessage.yPos})
         }
       }
     });
