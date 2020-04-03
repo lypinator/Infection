@@ -1,6 +1,6 @@
 var directionX;
 var directionY;
-
+let colliderGrabWallActivated = true;
 
 // You can write more code here
 
@@ -78,6 +78,24 @@ function itemCollisionHandler(){
 	this.time.removeAllEvents();
 	this.time.delayedCall(100, hideText, [this.fGameInfo], this);
 	
+	
+}
+
+function ToggleCollision(){
+	colliderGrabWallActivated = true;
+}
+
+function wallCollisionHandler(){
+	
+	colliderGrabWallActivated = false;
+	console.log("Collided");
+	this.fGameInfo.text = "Hold E to Move Item"; 
+	this.fGameInfo.visible = true;
+
+	this.time.removeAllEvents();
+	this.time.delayedCall(1000, hideText, [this.fGameInfo], this);
+	this.time.delayedCall(100,ToggleCollision,null,this);
+	
 }
 /* START OF COMPILED CODE */
 
@@ -91,7 +109,7 @@ class Scene1 extends Phaser.Scene {
 	
 	_create() {
 	
-		this.add.image(1050.0, 1050.0, "background1");
+		this.add.image(1000.0, 1000.0, "background1");
 		
 		var platform = this.add.image(224.0, 912.0, "platform");
 		
@@ -106,14 +124,11 @@ class Scene1 extends Phaser.Scene {
 		
 		var platform_4 = this.add.image(923.90283, 924.77264, "platform");
 		
-
-		var player = this.add.sprite(491.7915, 1036.438, "WalkLeftStand-removebg-preview");
-		player.setData("hasGun", false);
-
 		var lightningBolt = this.add.image(750.0, 1200.0, "lightning_bolt");
 		lightningBolt.setScale(0.3, 0.3);
 		
-		var player = this.add.sprite(491.7915, 1036.438, "blueMan");
+		var player = this.add.sprite(491.7915, 1036.438, "WalkLeftStand-removebg-preview");
+		player.setData("hasGun", false);
 		player.setScale(0.48163477, 0.35892242);
 		player.anims.play("LeftWalkLeftStand-removebg-preview");
 		
@@ -123,21 +138,31 @@ class Scene1 extends Phaser.Scene {
 		var token = this.add.sprite(695.0789, 636.8644, "blueMan1");
 		token.setScale(0.34577677, 0.31667724);
 		
-		var gameInfo = this.add.text(498.5, 313.0, "New text", {
-    "fontSize": "25px",
-    "color": "#FFFFFF",
-    "stroke": "#FF8080"
-});
-		gameInfo.visible = false;
+		var platform_7 = this.add.image(1203.3524, 567.26764, "platform");
+		platform_7.setScale(0.5973581, 1.035678);
+		
+		var platform_8 = this.add.image(1188.6333, 339.41705, "platform");
+		platform_8.setScale(0.5973581, 1.035678);
+		
+		var platform_6 = this.add.image(1052.0481, 453.31494, "platform");
+		platform_6.setScale(0.07395803, 4.9579167);
+		
+		var platform_9 = this.add.image(1393.2197, 443.0471, "platform");
+		platform_9.setScale(0.07395803, 4.9579167);
+		
+		var GameInfo = this.add.text(330.8849, 147.59862, "New text", {});
+		GameInfo.setScale(2.2440186, 3.0575879);
 		
 		this.fWalls = this.add.group([ platform, platform_3, platform_1, platform_2, platform_4, platform_5 ]);
+		this.fMoveables = this.add.group([ platform_7, platform_8, platform_6, platform_9 ]);
 		
 		this.fLightningBolt = lightningBolt;
 		this.fPlayer = player;
 		this.fToken = token;
-		this.fGameInfo = gameInfo;
+		this.fGameInfo = GameInfo;
 		
 	}
+	
 	
 	
 	
@@ -163,8 +188,6 @@ class Scene1 extends Phaser.Scene {
 		
 		this.physics.add.existing(this.fToken);
 		
-		this.fPlayer.body.setSize(this.fPlayer.width, this.fPlayer.height);
-		
 		this.physics.add.existing(this.fLightningBolt);
 		this.fLightningBolt.body.setSize(this.fLightningBolt.width, this.fLightningBolt.height);
 		this.fLightningBolt.body.immovable = true;
@@ -174,7 +197,12 @@ class Scene1 extends Phaser.Scene {
 			image.body.setSize(image.width, image.height);
 			image.body.immovable = true;
 		}
-		
+		for (var obj of this.fMoveables.children.entries) {
+			this.physics.add.existing(obj);
+			obj.body.setSize(obj.width, obj.height);
+			obj.body.setDrag(2000);
+			obj.body.immovable = true;
+		}
 		this.cameras.main.setSize(2000, 2000);
 		this.cameras.main.setZoom(5);
 		this.cameras.main.startFollow(this.fPlayer,false,0.5,0.5);
@@ -192,7 +220,9 @@ class Scene1 extends Phaser.Scene {
 		},this);
 		
 		this.physics.add.collider(this.fPlayer, this.fWalls);
+		this.physics.add.collider(this.fPlayer, this.fMoveables);
 		this.pickUpDuration = 0;
+		
 		
 		
 		}
@@ -200,8 +230,12 @@ class Scene1 extends Phaser.Scene {
 	update() {
 		this.physics.overlap(this.fPlayer, this.fLightningBolt, itemCollisionHandler, null, this);
 		this.physics.world.addCollider(this.fPlayer, this.fToken, collisionHandler, null, this);
-
-
+		
+		this.physics.world.addCollider(this.fPlayer, this.fMoveables, wallCollisionHandler,null,this);
+		/*()=>{
+			return colliderGrabWallActivated;
+		}, this);
+		*/
 	this.physics.world.addCollider(this.fPlayer, this.fToken, collisionHandler, null, this);
 
 	if(this.key_UP.isDown){

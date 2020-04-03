@@ -12,8 +12,8 @@
         "children": [],
         "variableName": "background1",
         "variableField": false,
-        "x": 1050,
-        "y": 1050,
+        "x": 1000,
+        "y": 1000,
         "textureKey": "background1",
         "textureFrame": "background1"
       },
@@ -132,41 +132,103 @@
         "textureFrame": "blueMan1"
       },
       {
-        "-id": "996bc8e4-9f18-4cda-aee2-45f41bde0f50",
+        "-id": "d3976096-4b16-44dc-8e99-5b14b35375c5",
+        "-type": "Image",
+        "children": [],
+        "variableName": "platform_7",
+        "variableField": false,
+        "x": 1203.3524169921875,
+        "y": 567.2676391601562,
+        "scaleX": 0.5973581075668335,
+        "scaleY": 1.0356780290603638,
+        "textureKey": "platform",
+        "textureFrame": "platform"
+      },
+      {
+        "-id": "b6411d2d-cb8a-4e30-ab7d-08854742f462",
+        "-type": "Image",
+        "children": [],
+        "variableName": "platform_8",
+        "variableField": false,
+        "x": 1188.63330078125,
+        "y": 339.41705322265625,
+        "scaleX": 0.5973581075668335,
+        "scaleY": 1.0356780290603638,
+        "textureKey": "platform",
+        "textureFrame": "platform"
+      },
+      {
+        "-id": "4531bbb5-c137-4409-983d-b32cc663d1bb",
+        "-type": "Image",
+        "children": [],
+        "variableName": "platform_6",
+        "variableField": false,
+        "x": 1052.048095703125,
+        "y": 453.31494140625,
+        "scaleX": 0.07395803183317184,
+        "scaleY": 4.957916736602783,
+        "textureKey": "platform",
+        "textureFrame": "platform"
+      },
+      {
+        "-id": "e9bd79af-c0b5-457d-814e-260c56e8e6ab",
+        "-type": "Image",
+        "children": [],
+        "variableName": "platform_9",
+        "variableField": false,
+        "x": 1393.2197265625,
+        "y": 443.0470886230469,
+        "scaleX": 0.07395803183317184,
+        "scaleY": 4.957916736602783,
+        "textureKey": "platform",
+        "textureFrame": "platform"
+      },
+      {
+        "-id": "081e5f89-6432-458b-b457-c2a376c6d769",
         "-type": "Text",
         "children": [],
-        "variableName": "gameInfo",
+        "variableName": "GameInfo",
         "variableField": true,
-        "visible": false,
-        "x": 498.5,
-        "y": 313,
-        "text": "New text",
-        "fontSize": "25px",
-        "color": "#FFFFFF",
-        "stroke": "#FF8080"
+        "x": 330.8848876953125,
+        "y": 147.59861755371094,
+        "scaleX": 2.2440185546875,
+        "scaleY": 3.0575878620147705,
+        "text": "New text"
       }
     ]
   },
   "groups": {
     "-id": "89eecac1-e75a-4225-a3ba-7ac59572410e",
     "-type": "Groups",
-    "children": [{
-      "-id": "08116b30-c140-4e3e-bd55-0bbc6ee465a7",
-      "children": [
-        {"-id": "9f4cf291-a53e-474a-945a-30f596cce4e7"},
-        {"-id": "15041859-194b-497d-b077-4225417d7f6b"},
-        {"-id": "5293d45b-28d4-4937-962c-2e811f5354bb"},
-        {"-id": "ce436378-7184-4dca-b398-29be6674313d"},
-        {"-id": "5cd9a3b9-4764-48a2-88ca-8e7fe8e5922b"},
-        {"-id": "a7353f6c-ae64-4734-87cc-bf616282178d"}
-      ],
-      "variableName": "walls",
-      "variableField": true
-    }]
+    "children": [
+      {
+        "-id": "08116b30-c140-4e3e-bd55-0bbc6ee465a7",
+        "children": [
+          {"-id": "9f4cf291-a53e-474a-945a-30f596cce4e7"},
+          {"-id": "15041859-194b-497d-b077-4225417d7f6b"},
+          {"-id": "5293d45b-28d4-4937-962c-2e811f5354bb"},
+          {"-id": "ce436378-7184-4dca-b398-29be6674313d"},
+          {"-id": "5cd9a3b9-4764-48a2-88ca-8e7fe8e5922b"},
+          {"-id": "a7353f6c-ae64-4734-87cc-bf616282178d"}
+        ],
+        "variableName": "walls",
+        "variableField": true
+      },
+      {
+        "-id": "f4c45dea-7d20-4224-b425-7e4934b1bdd8",
+        "children": [
+          {"-id": "d3976096-4b16-44dc-8e99-5b14b35375c5"},
+          {"-id": "b6411d2d-cb8a-4e30-ab7d-08854742f462"},
+          {"-id": "4531bbb5-c137-4409-983d-b32cc663d1bb"},
+          {"-id": "e9bd79af-c0b5-457d-814e-260c56e8e6ab"}
+        ],
+        "variableName": "Moveables",
+        "variableField": true
+      }
+    ]
   },
-  "snapEnabled": true,
-  "snapWidth": 150,
-  "snapHeight": 150,
+  "snapWidth": 400,
+  "snapHeight": 32,
   "borderHeight": 450,
   "createMethodName": "_create",
   "methodContextType": "SCENE",
