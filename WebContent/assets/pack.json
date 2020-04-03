@@ -37,12 +37,6 @@
     },
     {
       "type": "image",
-      "key": "bullet",
-      "url": "assets/bullet.png",
-      "normalMap": ""
-    },
-    {
-      "type": "image",
       "key": "WalkLeftBackLeg-removebg-preview",
       "url": "assets/WalkLeftBackLeg-removebg-preview.png",
       "normalMap": ""
@@ -68,14 +62,31 @@
       "type": "animation",
       "key": "Left1",
       "url": "assets/Left.json"
-    },{
-    "type": "image",
-          "key": "lightning_bolt",
-      "url": "assets/lightning_bolt.png"
-      }
+    },
+    {
+      "type": "image",
+      "key": "lightning_bolt",
+      "url": "assets/lightning_bolt.png",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "bulletLeft",
+      "url": "assets/bulletLeft.png"
+    },
+    {
+      "type": "image",
+      "key": "water",
+      "url": "assets/water.png"
+    },
+    {
+      "type": "image",
+      "key": "gunPickup",
+      "url": "assets/gunPickup.png"
+    }
   ]},
   "meta": {
-    "generated": "1585542438446",
+    "generated": "1585890182920",
     "app": "Phaser Editor 2D - Asset Pack Editor - 2.1.6",
     "contentType": "Phaser v3 Asset Pack",
     "url": "https://phasereditor2d.com",
