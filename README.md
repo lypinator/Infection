@@ -6,6 +6,6 @@ Setup.sh:
 2) Install websockets
 3) Start the server
 
-RunServer: 
+RunServer.sh: 
 
 1) Runs the server from the backend directory
